@@ -122,21 +122,21 @@ getData() {
     colorEcho ${BLUE}  " 伪装域名(host)：$DOMAIN"
 
     echo ""
-    # if [[ -f ~/v2ray.pem && -f ~/v2ray.key ]]; then
-    #     colorEcho ${BLUE}  " 检测到自有证书，将使用其部署"
-    #     echo
-    #     CERT_FILE="/etc/v2ray/${DOMAIN}.pem"
-    #     KEY_FILE="/etc/v2ray/${DOMAIN}.key"
-    # else
-    # #把这里换成服务器ip
-    #     resolve=`curl -sL https://hijk.art/hostip.php?d=${DOMAIN}`
-    #     res=`echo -n ${resolve} | grep ${IP}`
-    #     if [[ -z "${res}" ]]; then
-    #         colorEcho ${BLUE}  "${DOMAIN} 解析结果：${resolve}"
-    #         colorEcho ${RED}  " 域名未解析到当前服务器IP(${IP})!"
-    #         exit 1
-    #     fi
-    # fi
+     if [[ -f ~/v2ray.pem && -f ~/v2ray.key ]]; then
+         colorEcho ${BLUE}  " 检测到自有证书，将使用其部署"
+         echo
+         CERT_FILE="/etc/v2ray/${DOMAIN}.pem"
+         KEY_FILE="/etc/v2ray/${DOMAIN}.key"
+     else
+     #把这里换成服务器ip
+         resolve=`curl -sL https://hijk.art/hostip.php?d=${DOMAIN}`
+         res=`echo -n ${resolve} | grep ${IP}`
+         if [[ -z "${res}" ]]; then
+             colorEcho ${BLUE}  "${DOMAIN} 解析结果：${resolve}"
+             colorEcho ${RED}  " 域名未解析到当前服务器IP(${IP})!"
+             exit 1
+         fi
+     fi
 
     echo ""
     while true
@@ -308,7 +308,7 @@ getCert() {
 
 installV2ray() {
     colorEcho $BLUE " 安装v2ray..."
-    bash <(curl -sL ${V6_PROXY}https://raw.githubusercontent.com/Huan90s/hv2ray/master/gov2.sh?token=GHSAT0AAAAAAB6DMKUHHNXUVJXULBKC32S2Y7ESFQQ)
+    bash <(curl -sL ${V6_PROXY}https://raw.githubusercontent.com/Huan90s/hv2ray/master/gov2.sh)
 
     if [[ ! -f $CONFIG_FILE ]]; then
         colorEcho $RED " $OS 安装V2ray失败，请到 https://hijk.art 网站反馈"
