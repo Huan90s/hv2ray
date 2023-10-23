@@ -185,7 +185,7 @@ downloadV2Ray(){
         DOWNLOAD_LINK="https://cdn.jsdelivr.net/gh/v2fly/dist/v2ray-linux-${VDIS}.zip"
     else
         #DOWNLOAD_LINK="${V6_PROXY}https://github.com/v2fly/v2ray-core/releases/download/${NEW_VER}/v2ray-linux-${VDIS}.zip"
-	DOWNLOAD_LINK="${V6_PROXY}https://github.com/v2fly/v2ray-core/releases/download/4.33.0/v2ray-linux-${VDIS}.zip"
+	DOWNLOAD_LINK="${V6_PROXY}https://objects.githubusercontent.com/github-production-release-asset-2e65be/181461073/da799300-2b0a-11eb-9f2d-51c8aac7efea?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231023%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231023T064638Z&X-Amz-Expires=300&X-Amz-Signature=2f179d1b2330a01073ebcd15299e89579da1f92ceef09c65ec5373cce3f609e1&X-Amz-SignedHeaders=host&actor_id=9734422&key_id=0&repo_id=181461073&response-content-disposition=attachment%3B%20filename%3Dv2ray-linux-64.zip&response-content-type=application%2Foctet-stream"
     fi
     colorEcho ${BLUE} "Downloading V2Ray: ${DOWNLOAD_LINK}"
     curl ${PROXY} -L -H "Cache-Control: no-cache" -o ${ZIPFILE} ${DOWNLOAD_LINK}
